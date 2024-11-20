@@ -107,7 +107,7 @@ const CameraTable = ({ filterData }) => {
       );
     }
   };
-
+/*
   useEffect(() => {
     setPaginatedData(
       dataToDisplay.slice(
@@ -117,7 +117,7 @@ const CameraTable = ({ filterData }) => {
     );
   }, [dataToDisplay, currentPage, itemsPerPage]);
   
-
+*/
   const handleDelete = (id) => {
     // Confirm deletion
     if (window.confirm("Are you sure you want to delete this camera?")) {
