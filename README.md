@@ -19,6 +19,10 @@ implemented items per page range from 10-30 and update data on click.\
 
 In the project directory, you can run:
 
+### `npm install` to install dependencies
+
+Run npm install
+
 ### `npm start` to start the application
 
 Runs the app in the development mode.\
@@ -30,7 +34,6 @@ You may also see any lint errors in the console.
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
@@ -40,17 +43,8 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
 ### Deployment
 
-Deploymnet of this app is done on github pages
+This app is deployed on netlify - https://camera-list-table.netlify.app/
+
+e.g - filter and search functionality not working in the above link
