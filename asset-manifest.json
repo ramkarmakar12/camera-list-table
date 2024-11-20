@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/camera-list-table/static/css/main.93515a6a.css",
+    "main.js": "/camera-list-table/static/js/main.b26513f5.js",
+    "static/js/453.b6aac329.chunk.js": "/camera-list-table/static/js/453.b6aac329.chunk.js",
+    "index.html": "/camera-list-table/index.html",
+    "main.93515a6a.css.map": "/camera-list-table/static/css/main.93515a6a.css.map",
+    "main.b26513f5.js.map": "/camera-list-table/static/js/main.b26513f5.js.map",
+    "453.b6aac329.chunk.js.map": "/camera-list-table/static/js/453.b6aac329.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.93515a6a.css",
+    "static/js/main.b26513f5.js"
+  ]
+}
