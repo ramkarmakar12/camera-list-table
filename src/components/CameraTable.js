@@ -9,10 +9,7 @@ import { fetchCameras, updateCameraStatus } from '../services/api';
 const CameraTable = ({ filterData }) => {
   const [cameraData, setCameraData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  // const [searchTerm, setSearchTerm] = useState('');
-  // const [statusFilter, setStatusFilter] = useState('');
   const [filteredData, setFilteredData] = useState([]);
-  // const [loading, setLoading] = useState(false); // To indicate loading during updates
   const [itemsPerPage, setItemsPerPage] = useState(10); // Default items per page
   const [selectedCameras, setSelectedCameras] = useState([]);
 
@@ -43,27 +40,6 @@ const CameraTable = ({ filterData }) => {
     };
     loadCameras();
   }, []);
-
-  /*
-  // Update filteredData when search or filter changes
-  useEffect(() => {
-    let updatedData = cameraData;
-
-    if (searchTerm) {
-      updatedData = updatedData.filter((camera) =>
-        camera.name?.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    }
-
-    if (statusFilter) {
-      updatedData = updatedData.filter(
-        (camera) => camera.status === statusFilter
-      );
-    }
-
-    setFilteredData(updatedData);
-  }, [searchTerm, statusFilter, cameraData]);
-  */
 
   // Filter data based on the filteredData prop or full cameraData
   const dataToDisplay =
@@ -107,17 +83,7 @@ const CameraTable = ({ filterData }) => {
       );
     }
   };
-/*
-  useEffect(() => {
-    setPaginatedData(
-      dataToDisplay.slice(
-        (currentPage - 1) * itemsPerPage,
-        currentPage * itemsPerPage
-      )
-    );
-  }, [dataToDisplay, currentPage, itemsPerPage]);
-  
-*/
+
   const handleDelete = (id) => {
     // Confirm deletion
     if (window.confirm("Are you sure you want to delete this camera?")) {
@@ -144,17 +110,6 @@ const CameraTable = ({ filterData }) => {
       console.log("Camera deleted. Updated data:", updatedCameraData);
     }
   };
-  
-  
-
-  /*
-  const paginatedData = Array.isArray(cameraData)
-    ? cameraData.slice(
-        (currentPage - 1) * itemsPerPage,
-        currentPage * itemsPerPage
-      )
-    : [];
-    */
 
   const paginatedData = Array.isArray(dataToDisplay)
     ? dataToDisplay.slice(
