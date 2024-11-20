@@ -134,13 +134,13 @@ const CameraTable = ({ filterData }) => {
                 }
               />
             </th>
-            <th>Name</th>
-            <th>Health</th>
-            <th>Location</th>
-            <th>Recorder</th>
-            <th>Tasks</th>
-            <th>Status</th>
-            <th>Actions</th>
+            <th >NAME</th>
+            <th>HEALTH</th>
+            <th>LOCATION</th>
+            <th>RECORDER</th>
+            <th>TASKS</th>
+            <th>STATUS</th>
+            <th>ACTIONS</th>
           </tr>
         </thead>
         <tbody>
@@ -176,7 +176,7 @@ const CameraTable = ({ filterData }) => {
       .filter(([key]) => key !== 'id' && key !== '_id') // Exclude id and _id
       .map(([key, value]) => (
           <div key={key}>
-            <strong>{key}:</strong> {value}
+            <span>{key}:</span> {value}
           </div>
       ))
   : 'No health data available'}
