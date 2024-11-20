@@ -48,7 +48,6 @@ export const updateCameraStatus = async (id, status) => {
   try {
     const response = await API.put('/update/camera/status', { id, status });
     return response.data;
-     console.log(status);
   } catch (error) {
     console.error('Error updating camera status:', error);
     throw error; // Handle errors

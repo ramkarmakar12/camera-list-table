@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { FaTrash } from 'react-icons/fa';
-import { BsCCircle } from 'react-icons/bs';
 import { IoMdArrowDropleft, IoMdArrowDropright } from 'react-icons/io';
-import { filterData } from '../App';
+// import { filterData } from '../App';
+import FilterDramaIcon from '@mui/icons-material/FilterDrama';
+import Button from '@mui/material/Button'
 import { fetchCameras, updateCameraStatus } from '../services/api';
 
 const CameraTable = ({ filterData }) => {
@@ -10,7 +11,7 @@ const CameraTable = ({ filterData }) => {
   const [currentPage, setCurrentPage] = useState(1);
   // const [searchTerm, setSearchTerm] = useState('');
   // const [statusFilter, setStatusFilter] = useState('');
-  // const [filteredData, setFilteredData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   // const [loading, setLoading] = useState(false); // To indicate loading during updates
   const [itemsPerPage, setItemsPerPage] = useState(10); // Default items per page
   const [selectedCameras, setSelectedCameras] = useState([]);
@@ -76,31 +77,75 @@ const CameraTable = ({ filterData }) => {
   // Optimistically update camera status in local state
   const handleStatusToggle = async (id, currentStatus) => {
     const newStatus = currentStatus === 'Active' ? 'Inactive' : 'Active';
-
-    // Optimistically update the camera status locally
-    const updatedCameras = cameraData.map((camera) =>
-      camera.id === id ? { ...camera, status: newStatus } : camera
+  
+    // Optimistically update state with new status and temporary flag
+    setCameraData((prevData) =>
+      prevData.map((camera) =>
+        camera.id === id ? { ...camera, status: newStatus, isUpdating: true } : camera
+      )
     );
-    setCameraData(updatedCameras); // Update the camera data state immediately
-
+  
     try {
-      // Call API to update the status in the backend
+      // Call API to update the status
       await updateCameraStatus(id, newStatus);
+  
+      // Update state after successful update (remove temporary flag)
+      setCameraData((prevData) =>
+        prevData.map((camera) =>
+          camera.id === id ? { ...camera, isUpdating: false } : camera
+        )
+      );
     } catch (error) {
       console.error('Error updating camera status:', error);
       alert('Failed to update camera status. Please try again.');
-
-      // Revert the status change if the update failed
-      const revertCameras = dataToDisplay.map((camera) =>
-        camera.id === id ? { ...camera, status: currentStatus } : camera
+  
+      // Revert the status change and remove temporary flag
+      setCameraData((prevData) =>
+        prevData.map((camera) =>
+          camera.id === id ? { ...camera, status: currentStatus, isUpdating: false } : camera
+        )
       );
-      setCameraData(revertCameras); // Rollback the change
     }
   };
 
+  useEffect(() => {
+    setPaginatedData(
+      dataToDisplay.slice(
+        (currentPage - 1) * itemsPerPage,
+        currentPage * itemsPerPage
+      )
+    );
+  }, [dataToDisplay, currentPage, itemsPerPage]);
+  
+
   const handleDelete = (id) => {
-    setCameraData((prev) => prev.filter((camera) => camera.id !== id));
+    // Confirm deletion
+    if (window.confirm("Are you sure you want to delete this camera?")) {
+      // Update `cameraData` to remove the item
+      const updatedCameraData = cameraData.filter((camera) => camera.id !== id);
+      setCameraData(updatedCameraData);
+  
+      // Update `filteredData` if filtering is applied
+      if (Array.isArray(filteredData) && filteredData.length > 0) {
+        const updatedFilteredData = filteredData.filter((camera) => camera.id !== id);
+        setFilteredData(updatedFilteredData);
+      }
+  
+      // Handle pagination
+      const totalItems = (filteredData.length > 0 ? filteredData : updatedCameraData).length;
+      const totalPages = Math.ceil(totalItems / itemsPerPage);
+  
+      if (currentPage > totalPages) {
+        setCurrentPage(totalPages);
+      } else if (currentPage === totalPages && totalItems % itemsPerPage === 0) {
+        setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
+      }
+  
+      console.log("Camera deleted. Updated data:", updatedCameraData);
+    }
   };
+  
+  
 
   /*
   const paginatedData = Array.isArray(cameraData)
@@ -186,24 +231,22 @@ const CameraTable = ({ filterData }) => {
               <td>{camera.recorder || 'N/A'}</td>
               <td>{camera.tasks || 'N/A'} Tasks</td>
               <td>
-                <button
-                  onClick={() => handleStatusToggle(camera.id, camera.status)}
-                  className={`px-2 py-1 rounded ${
-                    camera.status === 'Active'
-                      ? 'bg-success p3 text-white' // Green background for Active (Bootstrap class)
-                      : 'bg-secondary text-white' // Gray background for Inactive (Bootstrap class)
-                  }`}
-                >
-                  {camera.status}
-                </button>
+              <Button variant="text"
+                color={camera.status === 'Active' ? 'success' : 'error'}
+        onClick={() => handleStatusToggle(camera.id, camera.status)}
+        className={`px-2 py-1 rounded `}
+      >
+        {camera.status}
+      </Button>
               </td>
               <td>
-                <button
+                <Button
                   onClick={() => handleDelete(camera.id)}
-                  className="text-danger text-red-500 hover:text-red-700"
+                  // className="text-danger text-red-500"
+                  variant ="container"
                 >
                   <FaTrash />
-                </button>
+                </Button>
               </td>
             </tr>
           ))}
