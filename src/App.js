@@ -16,16 +16,7 @@ const App = () => {
 
   // Unique locations for the dropdown
   const uniqueLocations = [...new Set(cameraData.map((camera) => camera.location))];
-/*
-  // Filtered data
-  const filtereData = cameraData.filter((camera) => {
-    const matchesLocation =
-      selectedLocation === '' || camera.location === selectedLocation;
-    const matchesStatus =
-      selectedStatus === '' || camera.status === selectedStatus;
-    return matchesLocation && matchesStatus;
-  });
-  */
+
  // Apply filters whenever `selectedLocation`, `selectedStatus`, or `cameraData` changes
  useEffect(() => {
   console.log("Applying Filters");
@@ -61,9 +52,6 @@ const App = () => {
     };
     loadCameras();
   }, []);
-
-
-
 
   return (
     <div className="container mx-auto p-4">
