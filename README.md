@@ -45,6 +45,6 @@ Your app is ready to be deployed!
 
 ### Deployment
 
-This app is deployed on netlify - https://camera-list-table.netlify.app/
+This app is deployed on netlify - https://camera-list-table.netlify.app/ and vercel - https://camera-list-table.vercel.app/
 
-e.g - filter and search functionality not working in the above link
+e.g - some functionality might not work in the above environments but be assured they are working in my local(Tested).
