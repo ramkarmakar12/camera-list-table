@@ -5,9 +5,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 # Modules used in this app
 
 Wobot logo
-heading and searchbar
+heading and searchbar - to filter out data
 filter - by location and status
 table - list all the cameras
+modification - Can select rows including all rows , change the status and delete the data
 pagination - to display all the data fetched from api
 
 ## Available Scripts
