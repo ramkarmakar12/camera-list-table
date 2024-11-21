@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { FaTrash } from 'react-icons/fa';
 import { IoMdArrowDropleft, IoMdArrowDropright } from 'react-icons/io';
 // import { filterData } from '../App';
-import Button from '@mui/material/Button'
 import { fetchCameras, updateCameraStatus } from '../services/api';
 
 const CameraTable = ({ filterData }) => {
