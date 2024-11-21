@@ -185,22 +185,26 @@ const CameraTable = ({ filterData }) => {
               <td>{camera.recorder || 'N/A'}</td>
               <td>{camera.tasks || 'N/A'} Tasks</td>
               <td>
-              <Button variant="text"
-                color={camera.status === 'Active' ? 'success' : 'error'}
-        onClick={() => handleStatusToggle(camera.id, camera.status)}
-        className={`px-2 py-1 rounded `}
-      >
+       <button
+                  onClick={() => handleStatusToggle(camera.id, camera.status)}
+                  className={`px-2 py-1 rounded ${
+                    camera.status === 'Active'
+                      ? 'bg-success text-white' // Green background for Active
+                      : 'bg-secondary text-white' // Gray background for Inactive
+                  }`}
+                >
         {camera.status}
-      </Button>
+      </button>
               </td>
               <td>
-                <Button
+                <button
+            className="border p-2 rounded"
                   onClick={() => handleDelete(camera.id)}
                   // className="text-danger text-red-500"
                   variant ="container"
                 >
                   <FaTrash />
-                </Button>
+                </button>
               </td>
             </tr>
           ))}
