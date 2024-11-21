@@ -8,7 +8,7 @@ const API = axios.create({
 // Add Bearer token to all requests
 API.interceptors.request.use(
   (config) => {
-    const token = '4ApVMIn5sTxeW7GQ5VWeWiy'; // Replace with your actual token
+    const token = '4ApVMIn5sTxeW7GQ5VWeWiy'; // Replaced with actual token
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
