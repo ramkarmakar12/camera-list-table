@@ -9,7 +9,7 @@ heading and searchbar - to filter out data.\
 filter - by location and status.\
 table - list all the cameras with details.\
 Implemented green or red dot based on camera is in active or inactive status.\
-modification - Can select rows including all rows , change the status and delete the data.\
+modification - Can select rows including all rows , change the status (on reload) and delete the data.\
 Implemented health of each camera to display cloud and device health.\
 On deploying the project the status update on click might not work without reloading.\
 pagination - to display all the data fetched from api.\
